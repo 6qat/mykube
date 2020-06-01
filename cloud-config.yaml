@@ -1,0 +1,25 @@
+package_update: false 
+package_upgrade: false 
+packages:
+        - git
+        - htop
+        - atop
+        - neofetch
+        - docker.io
+        - net-tools
+        - socat
+        - conntrack
+        - curl
+        - wget
+runcmd:
+        - usermod -aG docker ubuntu
+        - systemctl enable docker.service
+        - curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add 
+        - apt-add-repository "deb http://apt.kubernetes.io/ kubernetes-xenial main"
+        - apt-get install kubeadm kubelet kubectl -y
+
+
+ssh_authorized_keys:
+        - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDOQrcUPkwD9m/H1iFEKwSm43W6FzADI0LcmJZy1cfUEnZXDIy8wSy1vFUN4gC61IV9su53HZq+9ohfy85LguCriRWSArTVGAuSSIDzEzo2yjMBA0s4netIo5DFGB/2fA2NZ/bwuGNEh8u7zG6+ETeMYgMhTYQXYPArDdBSoZdjbB7GCYUbYPWH6z/QenqlEwB3Wkv6WDwwLt0RoXM5BDhvesj2l0x8m78EavwI6oaLaTZZClbRu/W0nFtokGvkOmFcUifJFwfIJP3M86lu+xl16tv/SvEqTyf6w0rMMjKMftmSXnuKfVitwnBKidO5nHZHxdslzlmFJrrYP3ZHoEYSM7cKLclouDDPF5oOxOokSZana/yYMJH7zxHbgh4f9PyLhiJTMnYbAzzK4nbeG/g3hefHi/kPOEZzSAYuorhp0p9K6gYA2Y12YEpffaB40IybS7HTNIJ7crzVdlkSSKNM7h03Vl3tU458u1MjIfUYHfFRhcZ5j8Lnfv0QXXuguv0= guiga@pop-os
+        
+final_message: "The system is finally up, after $UPTIME seconds"
