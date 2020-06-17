@@ -1,6 +1,0 @@
-# https://hub.helm.sh/charts/rimusz/hostpath-provisioner
-# https://github.com/rimusz/charts/tree/master/stable/hostpath-provisioner
-
-# helm repo add rimusz https://charts.rimusz.net
-# helm install rimusz/hostpath-provisioner --version 0.2.9 --generate-name
-
