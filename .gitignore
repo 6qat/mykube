@@ -1,3 +1,4 @@
 hardway/*.json
 hardway/*.pem
 hardway/*.csr
+.vscode/
