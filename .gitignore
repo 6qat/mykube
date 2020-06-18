@@ -2,3 +2,7 @@ hardway/*.json
 hardway/*.pem
 hardway/*.csr
 .vscode/
+hardway/kube-apiserver
+hardway/kube-controller-manager
+hardway/kube-scheduler
+hardway/kubectl
