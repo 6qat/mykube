@@ -27,7 +27,7 @@ cfssl gencert \
   -ca=ca.pem \
   -ca-key=ca-key.pem \
   -config=ca-config.json \
-  -hostname=$(lxc info controller-0| grep eth0 | head -1 | awk '{print $3}'),${KUBERNETES_PUBLIC_ADDRESS},127.0.0.1,${KUBERNETES_HOSTNAMES} \
+  -hostname=$(lxc info controller-0| grep eth0 | head -1 | awk '{print $3}'),$(lxc info controller-1| grep eth0 | head -1 | awk '{print $3}'),$(lxc info controller-2| grep eth0 | head -1 | awk '{print $3}'),${KUBERNETES_PUBLIC_ADDRESS},127.0.0.1,${KUBERNETES_HOSTNAMES} \
   -profile=kubernetes \
   kubernetes-csr.json | cfssljson -bare kubernetes
 
