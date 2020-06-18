@@ -6,3 +6,4 @@ wget -q --show-progress --https-only --timestamping \
   "https://storage.googleapis.com/kubernetes-release/release/${VERSION}/bin/linux/amd64/kube-scheduler" \
   "https://storage.googleapis.com/kubernetes-release/release/${VERSION}/bin/linux/amd64/kubectl"
 
+chmod a+x kube-apiserver kube-controller-manager kube-scheduler kubectl 
