@@ -1,3 +1,5 @@
+https://github.com/corneliusweig/kubernetes-lxd
+
 Usual lxc containers are quite restricted in their capabilities. Because we need to run docker and kubernetes in the lxc container, it is required to give the container the capabilities to manage networking configuration and create cgroups. For that, run lxc config edit k8s-lxc and merge in the following settings:
 
 config:
