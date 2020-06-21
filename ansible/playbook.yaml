@@ -1,6 +1,7 @@
 - hosts: localhost
   connection: local
   tasks:
+
     - name: LXD container creation 
       lxd_container: 
         name: "{{ item }}" 
@@ -24,4 +25,11 @@
       with_items:
         - guiga
 
-           
+    - name: Basic script
+      delegate_to: localhost 
+      shell: lxc file push basic.sh "{{ item }}"/root/ && lxc exec "{{ item }}" -- /root/basic.sh
+      with_items:
+        - guiga
+
+
+
