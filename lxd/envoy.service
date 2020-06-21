@@ -1,0 +1,12 @@
+[Unit]
+Description=envoy
+Documentation=https://www.envoyproxy.io/docs
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/envoy -c /etc/envoy/envoy.yaml
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

@@ -21,6 +21,4 @@ wget https://github.com/kubernetes-sigs/cri-tools/releases/download/$VERSION/cri
 sudo tar zxvf crictl-$VERSION-linux-amd64.tar.gz -C /usr/local/bin
 rm -f crictl-$VERSION-linux-amd64.tar.gz
 
-apt-get install kubeadm kubelet kubectl -y
-
 

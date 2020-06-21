@@ -10,7 +10,7 @@
           limits.cpu: "2"
           limits.memory: 4GB
           limits.memory.swap: "false"
-          linux.kernel_modules: ip_tables,ip6_tables,netlink_diag,nf_nat,overlay
+          linux.kernel_modules: ip_tables,ip6_tables,netlink_diag,nf_nat,ip_vs,ip_vs_rr,ip_vs_wrr,ip_vs_sh,overlay
           raw.lxc: "lxc.apparmor.profile=unconfined\nlxc.cap.drop= \nlxc.cgroup.devices.allow=a\nlxc.mount.auto=proc:rw sys:rw"
           security.nesting: "true"
           security.privileged: "true"
@@ -19,6 +19,10 @@
             path: /dev/kmsg
             source: /dev/kmsg
             type: unix-char
+          aadisable:
+            path: /sys/module/nf_conntrack/parameters/hashsize
+            source: /sys/module/nf_conntrack/parameters/hashsize
+            type: disk
         source:
           type: image
           mode: pull
@@ -29,29 +33,34 @@
         timeout: 600
       with_items:
         - guiga
+        - worker-0
 
     - name: Basic script
       delegate_to: localhost 
       shell: lxc file push containerd.service "{{ item }}"/root/ && lxc file push kubelet.service "{{ item }}"/root/ && lxc file push basic.sh "{{ item }}"/root/ && lxc exec "{{ item }}" -- /root/basic.sh
       with_items:
         - guiga
+        - worker-0
 
     - name: Get Kubernetes binaries
       delegate_to: localhost
       shell: ./get-kube-binaries.sh
       with_items:
         - guiga
+        - worker-0
 
     - name: Get ssl binaries
       delegate_to: localhost
       shell: ./get-ssl-binaries.sh
       with_items:
         - guiga
+        - worker-0
 
     - name: Push all binaries to nodes
       delegate_to: localhost
-      shell: # lxc file push bin/* "{{ item }}"/usr/local/bin/  
+      shell: lxc file push bin/* "{{ item }}"/usr/local/bin/  
       with_items:
         - guiga
+        - worker-0
 
 
