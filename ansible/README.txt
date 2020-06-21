@@ -7,4 +7,4 @@ pip install --user ansible
 
 export PATH=~/.local/bin:$PATH
 
-
+ansible-playbook playbook.yaml

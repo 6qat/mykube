@@ -14,6 +14,11 @@
           raw.lxc: "lxc.apparmor.profile=unconfined\nlxc.cap.drop= \nlxc.cgroup.devices.allow=a\nlxc.mount.auto=proc:rw sys:rw"
           security.nesting: "true"
           security.privileged: "true"
+        devices:
+          kmsg:
+            path: /dev/kmsg
+            source: /dev/kmsg
+            type: unix-char
         source:
           type: image
           mode: pull
@@ -27,7 +32,7 @@
 
     - name: Basic script
       delegate_to: localhost 
-      shell: lxc file push containerd.service "{{ item }}"/root/ && lxc file push basic.sh "{{ item }}"/root/ && lxc exec "{{ item }}" -- /root/basic.sh
+      shell: lxc file push containerd.service "{{ item }}"/root/ && lxc file push kubelet.service "{{ item }}"/root/ && lxc file push basic.sh "{{ item }}"/root/ && lxc exec "{{ item }}" -- /root/basic.sh
       with_items:
         - guiga
 
@@ -45,7 +50,7 @@
 
     - name: Push all binaries to nodes
       delegate_to: localhost
-      shell: lxc file push bin/* "{{ item }}"/usr/local/bin/  
+      shell: # lxc file push bin/* "{{ item }}"/usr/local/bin/  
       with_items:
         - guiga
 
