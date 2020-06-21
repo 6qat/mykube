@@ -33,7 +33,20 @@
 
     - name: Get Kubernetes binaries
       delegate_to: localhost
-      shell: lxc file push get-kube-binaries.sh "{{ item }}"/root/ && lxc exec "{{ item }}" -- /root/get-kube-binaries.sh
+      shell: ./get-kube-binaries.sh
       with_items:
         - guiga
+
+    - name: Get ssl binaries
+      delegate_to: localhost
+      shell: ./get-ssl-binaries.sh
+      with_items:
+        - guiga
+
+    - name: Push all binaries to nodes
+      delegate_to: localhost
+      shell: lxc file push bin/* "{{ item }}"/usr/local/bin/  
+      with_items:
+        - guiga
+
 
