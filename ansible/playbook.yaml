@@ -27,7 +27,7 @@
 
     - name: Basic script
       delegate_to: localhost 
-      shell: lxc file push basic.sh "{{ item }}"/root/ && lxc exec "{{ item }}" -- /root/basic.sh
+      shell: lxc file push containerd.service "{{ item }}"/root/ && lxc file push basic.sh "{{ item }}"/root/ && lxc exec "{{ item }}" -- /root/basic.sh
       with_items:
         - guiga
 
