@@ -31,5 +31,9 @@
       with_items:
         - guiga
 
-
+    - name: Get Kubernetes binaries
+      delegate_to: localhost
+      shell: lxc file push get-kube-binaries.sh "{{ item }}"/root/ && lxc exec "{{ item }}" -- /root/get-kube-binaries.sh
+      with_items:
+        - guiga
 

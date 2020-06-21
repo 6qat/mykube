@@ -16,3 +16,4 @@ hardway/cfssl
 hardway/cfssljson
 **.*.kubeconfig
 hardway/encryption-config.yaml
+ansible/bin/**
