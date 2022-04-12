@@ -1,0 +1,16 @@
+https://jon.sprig.gs/blog/post/1574
+
+sudo D:\dev\bin\PsExec64.exe -s "c:\program files\oracle\virtualbox\vboxmanage" modifyvm "ubu" --nic2 bridged --bridgeadapter2 "Qualcomm QCA61x4A 802.11ac Wireless Adapter"
+
+ubuntu@ubu:~/.ssh$ cat /etc/netplan/60-extra-interfaces.yaml
+network:
+  ethernets:
+    enp0s8:
+      optional: yes
+      dhcp4: yes
+      dhcp4-overrides:
+        route-metric: 10
+
+
+netplan apply
+
