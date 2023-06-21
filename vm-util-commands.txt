@@ -1,0 +1,24 @@
+
+systemd-detect-virt
+
+dmidecode -s system-product-name
+
+ls -1 /dev/disk/by-id/
+
+apt install lshw
+lshw -class system
+
+apt install open-vm-tools
+ethtool -i enp0s3
+
+dmesg | grep -i virtual
+lspci | grep -i virtualbox
+
+apt install virt-what
+virt-what
+
+hostnamectl status
+
+apt-get install imvirt
+imvirt
+
