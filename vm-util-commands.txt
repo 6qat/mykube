@@ -7,9 +7,11 @@ ls -1 /dev/disk/by-id/
 
 apt install lshw
 lshw -class system
+lshw -class network
 
 apt install open-vm-tools
 ethtool -i enp0s3
+ethtool enp0s3
 
 dmesg | grep -i virtual
 lspci | grep -i virtualbox
