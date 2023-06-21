@@ -13,6 +13,7 @@ apt install open-vm-tools
 ethtool -i enp0s3
 ethtool enp0s3
 
+
 dmesg | grep -i virtual
 lspci | grep -i virtualbox
 
